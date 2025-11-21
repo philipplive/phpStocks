@@ -47,12 +47,12 @@ class Stock {
 	public float $volume;
 
 	/**
-	 * Durchschnittliches Tagesvolumen der letzte 10 Tage
+	 * Durchschnittliches Tagesvolumen der letzten 10 Tage
 	 */
 	public float $volumeAverage10;
 
 	/**
-	 * Durchschnittliches Tagesvolumen der letzte 90 Tage
+	 * Durchschnittliches Tagesvolumen der letzten 90 Tage
 	 */
 	public float $volumeAverage90;
 
