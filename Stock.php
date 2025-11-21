@@ -81,7 +81,9 @@ class Stock {
 	 */
 	public ?float $dividends;
 
-
+	/**
+	 * @param array $data Json-Daten
+	 */
 	public function __construct(array $data) {
 		$this->data = $data["context"]["dispatcher"]["stores"]['QuoteSummaryStore'];
 
