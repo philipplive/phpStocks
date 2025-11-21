@@ -1,6 +1,6 @@
 <?php
 
-include 'Stock.php';
+require_once 'Stock.php';
 
 // Einfache Kursabfrage für Bitcoin in USD
 echo Stock::getByTag('BTC-USD')->price;

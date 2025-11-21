@@ -87,7 +87,7 @@ class Stock {
 
 		$this->name = $this->parse(['price', 'shortName']);
 		$this->currency = $this->parse(['price', 'currency']);
-		$this->description = isset($this->data['summaryProfile']['description']) ? $this->data['summaryProfile']['description'] : $this->data['summaryProfile']['longBusinessSummary'];
+		$this->description = $this->data['summaryProfile']['description'] ?? $this->data['summaryProfile']['longBusinessSummary'];
 		$this->price = $this->parse(['price', 'regularMarketPrice', 'raw']);
 		$this->priceChangePercent = $this->parse(['price', 'regularMarketChangePercent', 'raw']) * 100;
 		$this->volume = $this->parse(['price', 'regularMarketVolume', 'raw']);
@@ -104,10 +104,10 @@ class Stock {
 
 	/**
 	 * @param array $query
-	 * @param null $defaultValue
-	 * @return mixed|null
+	 * @param mixed $defaultValue
+	 * @return mixed
 	 */
-	private function parse(array $query, $defaultValue = null) {
+	private function parse(array $query, mixed $defaultValue = null): mixed {
 		$ref = &$this->data;
 
 		do {
@@ -126,7 +126,7 @@ class Stock {
 	 * @param string $tag Kürzel, .z.B. "BAS.DE" = BASF gehandelt auf XETRA, "BTC-USD" oder "BTC-EUR" = Bitcoin in USD oder EUR... Die Kürzel können von Yahoo! übernommen werden.
 	 * @return self
 	 */
-	public static function getByTag(string $tag) : self {
+	public static function getByTag(string $tag): self {
 		$data = file_get_contents('https://finance.yahoo.com/quote/'.$tag);
 		$jsonString = null;
 		preg_match('/root.App.main = (.*);/', $data, $jsonString);
